@@ -24,14 +24,14 @@ export default function Header({ onOpenApiKey, hasKey }: HeaderProps) {
 
         <button
           onClick={onOpenApiKey}
-          className={`px-6 py-2.5 rounded-2xl font-bold flex items-center gap-2 transition-all active:scale-95 shadow-lg ${
+          className={`px-3 sm:px-6 py-2 sm:py-2.5 rounded-2xl font-bold flex items-center gap-2 transition-all active:scale-95 shadow-lg text-xs sm:text-sm ${
             hasKey 
               ? 'bg-green-50 text-green-600 border border-green-100 hover:bg-green-100' 
               : 'bg-red-50 text-red-600 border border-red-100 hover:bg-red-100'
           }`}
         >
           <Key className="w-4 h-4" />
-          {hasKey ? 'API Key 已配置' : '输入 API Key'}
+          <span className="hidden sm:inline">{hasKey ? 'API Key 已配置' : '输入 API Key'}</span>
         </button>
       </div>
     </header>

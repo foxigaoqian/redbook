@@ -54,22 +54,24 @@ export default function NoteInput({ onFetch, isLoading, error }: NoteInputProps)
   return (
     <div className="w-full max-w-3xl mx-auto space-y-4">
       {!showManual ? (
-        <form onSubmit={handleSubmit} className="relative group">
-          <div className="absolute left-6 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-red-500 transition-colors">
-            <LinkIcon className="w-5 h-5" />
+        <form onSubmit={handleSubmit} className="flex flex-col sm:block relative group gap-3 sm:gap-0">
+          <div className="relative w-full">
+            <div className="absolute left-4 sm:left-6 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-red-500 transition-colors">
+              <LinkIcon className="w-5 h-5" />
+            </div>
+            <input
+              type="text"
+              value={url}
+              onChange={(e) => setUrl(e.target.value)}
+              placeholder="在此粘贴小红书分享内容或链接..."
+              className="w-full pl-12 sm:pl-14 pr-4 sm:pr-40 py-4 sm:py-5 bg-white border-2 border-gray-100 rounded-2xl sm:rounded-3xl shadow-xl focus:ring-4 focus:ring-red-500/10 focus:border-red-500 outline-none transition-all text-base sm:text-lg font-medium placeholder:text-gray-300"
+            />
           </div>
-          <input
-            type="text"
-            value={url}
-            onChange={(e) => setUrl(e.target.value)}
-            placeholder="在此粘贴小红书分享内容或链接..."
-            className="w-full pl-14 pr-36 py-5 bg-white border-2 border-gray-100 rounded-3xl shadow-xl focus:ring-4 focus:ring-red-500/10 focus:border-red-500 outline-none transition-all text-lg font-medium placeholder:text-gray-300"
-          />
-          <div className="absolute right-3 top-1/2 -translate-y-1/2">
+          <div className="sm:absolute sm:right-3 sm:top-1/2 sm:-translate-y-1/2 w-full sm:w-auto mt-3 sm:mt-0">
             <button
               type="submit"
               disabled={isLoading || !url.trim()}
-              className="px-8 py-3 bg-red-500 hover:bg-red-600 disabled:bg-gray-200 text-white rounded-2xl font-bold flex items-center gap-2 transition-all active:scale-95 shadow-lg shadow-red-500/20"
+              className="w-full sm:w-auto px-6 sm:px-8 py-4 sm:py-3 bg-red-500 hover:bg-red-600 disabled:bg-gray-200 text-white rounded-2xl font-bold flex items-center justify-center gap-2 transition-all active:scale-95 shadow-lg shadow-red-500/20 text-base"
             >
               {isLoading ? (
                 <Loader2 className="w-5 h-5 animate-spin" />
