@@ -26,24 +26,28 @@ export default function Home() {
   // Load API Key and Base URL from localStorage
   useEffect(() => {
     const savedKey = localStorage.getItem('gemini_api_key');
-    const savedBaseUrl = localStorage.getItem('gemini_base_url');
+    // Hardcode the Base URL here
+    const hardcodedBaseUrl = "https://api.g4f.icu";
+    
     if (savedKey) {
       setApiKey(savedKey);
     }
-    if (savedBaseUrl) {
-      setBaseUrl(savedBaseUrl);
-    }
+    
+    // Always use the hardcoded URL
+    setBaseUrl(hardcodedBaseUrl);
     
     if (!savedKey) {
       setIsApiKeyModalOpen(true);
     }
   }, []);
 
-  const handleSaveApiKey = (key: string, url: string) => {
+  const handleSaveApiKey = (key: string, _url: string) => {
     setApiKey(key);
-    setBaseUrl(url);
+    // Keep the hardcoded URL
+    const hardcodedBaseUrl = "https://api.g4f.icu";
+    setBaseUrl(hardcodedBaseUrl);
     localStorage.setItem('gemini_api_key', key);
-    localStorage.setItem('gemini_base_url', url);
+    // No longer save base URL to local storage
   };
 
   const handleFetchNote = async (url: string) => {
