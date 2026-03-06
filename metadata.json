@@ -1,0 +1,5 @@
+{
+  "name": "AI 小红书笔记复刻器",
+  "description": "一键抓取小红书笔记并复刻生成多个变体版本，支持文案与图片生成。",
+  "requestFramePermissions": []
+}
