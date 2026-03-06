@@ -27,7 +27,7 @@ export default function Home() {
   useEffect(() => {
     const savedKey = localStorage.getItem('gemini_api_key');
     // Hardcode the Base URL here
-    const hardcodedBaseUrl = "https://api.g4f.icu";
+    const hardcodedBaseUrl = "https://aigc.dianlichina.com.cn";
     
     if (savedKey) {
       setApiKey(savedKey);
