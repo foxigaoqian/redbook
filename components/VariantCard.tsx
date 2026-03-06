@@ -43,13 +43,26 @@ export default function VariantCard({ variant, index }: VariantCardProps) {
     }
   };
 
-  const handleDownload = (imgUrl: string, idx: number) => {
-    const link = document.createElement('a');
-    link.href = imgUrl;
-    link.download = `xhs-variant-${index + 1}-img-${idx + 1}.jpg`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+  const handleDownload = async (imgUrl: string, idx: number) => {
+    try {
+      // Fetch the image as a blob to force a local download instead of browser navigation
+      const response = await fetch(imgUrl);
+      const blob = await response.blob();
+      const blobUrl = window.URL.createObjectURL(blob);
+      
+      const link = document.createElement('a');
+      link.href = blobUrl;
+      link.download = `xhs-variant-${index + 1}-img-${idx + 1}.jpg`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      
+      // Clean up the blob URL after a short delay
+      setTimeout(() => window.URL.revokeObjectURL(blobUrl), 1000);
+    } catch (error) {
+      console.error("Failed to download image directly, falling back to window.open", error);
+      window.open(imgUrl, '_blank');
+    }
   };
 
   const handleDownloadAll = () => {
